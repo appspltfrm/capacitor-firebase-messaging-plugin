@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">FirebaseMessagingPluginDemo</string>
+    <string name="title_activity_main">FirebaseMessagingPluginDemo</string>
+    <string name="package_name">co.mmons.capacitor.firebase.messaging.demo</string>
+    <string name="fileprovider_authority">co.mmons.capacitor.firebase.messaging.demo.fileprovider</string>
+    <string name="custom_url_scheme">co.mmons.capacitor.firebase.messaging.demo</string>
+</resources>

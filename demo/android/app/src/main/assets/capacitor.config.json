@@ -1,0 +1,6 @@
+{
+  "appId": "co.mmons.capacitor.firebase.messaging.demo",
+  "appName": "FirebaseMessagingPluginDemo",
+  "bundledWebRuntime": true,
+  "webDir": "www"
+}

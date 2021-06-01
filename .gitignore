@@ -1,0 +1,15 @@
+# Specifies files to intentionally ignore when using Git
+# http://git-scm.com/docs/gitignore
+
+node_modules
+xcuserdata
+.gradle/
+cli/key.json
+
+**/.idea/workspace.xml
+**/.idea/tasks.xml
+**/.idea/usage.statistics.xml
+**/.idea/dictionaries/
+**/.idea/libraries/
+**/.idea/caches/
+package-lock.json

@@ -1,0 +1,45 @@
+{
+  "name": "@appspltfrm/capacitor-firebase-messaging-plugin",
+  "version": "1.0.0",
+  "description": "Firebase Messaging plugin for Capacitor",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "npm run clean && tsc",
+    "clean": "rm -rf ./dist",
+    "watch": "tsc --watch"
+  },
+  "author": "co.mmons",
+  "license": "MIT",
+  "devDependencies": {
+    "@capacitor/core": "latest",
+    "@capacitor/android": "latest",
+    "@capacitor/cli": "latest",
+    "@capacitor/ios": "latest",
+    "@types/fs-extra": "^9.0.11",
+    "firebase-admin": "^9.4.0",
+    "tslib": "^2.2.0",
+    "typescript": "^4.3.2"
+  },
+  "peerDependencies": {
+    "@capacitor/core": "latest",
+    "@capacitor/android": "latest",
+    "@capacitor/cli": "latest",
+    "@capacitor/ios": "latest"
+  },
+  "capacitor": {
+    "ios": {
+      "src": "ios"
+    },
+    "android": {
+      "src": "android"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/co-mmons/capacitor-firebase-messaging-plugin"
+  },
+  "bugs": {
+    "url": "https://github.com/co-mmons/capacitor-firebase-messaging-plugin/issues"
+  }
+}
