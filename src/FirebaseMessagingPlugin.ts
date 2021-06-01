@@ -1,6 +1,7 @@
-import {PluginListenerHandle} from "@capacitor/core";
-import {NotificationsPermissionState} from "./NotificationsPermissionState";
-import {RemoteMessage} from "./RemoteMessage";
+import type {PluginListenerHandle} from "@capacitor/core";
+
+import type {NotificationsPermissionState} from "./NotificationsPermissionState";
+import type {RemoteMessage} from "./RemoteMessage";
 
 export interface FirebaseMessagingPlugin {
 

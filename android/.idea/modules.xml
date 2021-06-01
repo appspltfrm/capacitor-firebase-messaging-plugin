@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/android.iml" filepath="$PROJECT_DIR$/android.iml" group="android" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-227997583/capacitor-android.iml" filepath="$PROJECT_DIR$/.idea/modules/-227997583/capacitor-android.iml" group="android/capacitor-android" />
-      <module fileurl="file://$PROJECT_DIR$/@co.mmons/capacitor-firebase-messaging-plugin/capacitor-firebase-messaging-plugin.iml" filepath="$PROJECT_DIR$/@co.mmons/capacitor-firebase-messaging-plugin/capacitor-firebase-messaging-plugin.iml" group="android/capacitor-firebase-messaging-plugin" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/android.iml" filepath="$PROJECT_DIR$/.idea/android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1826264255/android.capacitor-android.iml" filepath="$PROJECT_DIR$/.idea/modules/1826264255/android.capacitor-android.iml" />
     </modules>
   </component>
 </project>

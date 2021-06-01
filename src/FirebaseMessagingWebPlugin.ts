@@ -1,6 +1,7 @@
 import {WebPlugin} from "@capacitor/core";
-import {FirebaseMessagingPlugin} from "./FirebaseMessagingPlugin";
-import {NotificationsPermissionState} from "./NotificationsPermissionState";
+
+import type {FirebaseMessagingPlugin} from "./FirebaseMessagingPlugin";
+import type {NotificationsPermissionState} from "./NotificationsPermissionState";
 
 export class FirebaseMessagingWebPlugin extends WebPlugin implements FirebaseMessagingPlugin {
 
@@ -16,11 +17,11 @@ export class FirebaseMessagingWebPlugin extends WebPlugin implements FirebaseMes
 		throw new Error("Method not implemented.");
 	}
 
-	subscribeToTopic(call: {topic: string}): Promise<void> {
+	subscribeToTopic(_call: {topic: string}): Promise<void> {
 		throw new Error("Method not implemented.");
 	}
 
-	unsubscribeFromTopic(call: {topic: string}): Promise<void> {
+	unsubscribeFromTopic(_call: {topic: string}): Promise<void> {
 		throw new Error("Method not implemented.");
 	}
 
