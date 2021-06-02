@@ -45,10 +45,5 @@ export interface FirebaseMessagingPlugin {
      * @return A promise, which is resolved when destroy successful, rejects other case.
      */
     destroy(): Promise<void>;
-    /**
-     *
-     * @param eventName
-     * @param listener
-     */
-    addListener(eventName: "messageReceived", listener: (message: RemoteMessage) => void): PluginListenerHandle;
+    addListener(eventName: "messageReceived", listenerFunc: (message: RemoteMessage) => void): Promise<PluginListenerHandle>;
 }
