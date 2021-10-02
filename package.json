@@ -1,7 +1,7 @@
 {
   "name": "@appspltfrm/capacitor-firebase-messaging-plugin",
   "version": "1.0.0",
-  "description": "Firebase Messaging",
+  "description": "Firebase Messaging Plugin",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
@@ -11,7 +11,7 @@
     "android/build.gradle",
     "dist/",
     "ios/Plugin/",
-    "CapacitorFirebaseMessagingPlugin.podspec"
+    "AppspltfrmCapacitorFirebaseMessagingPlugin.podspec"
   ],
   "author": "",
   "license": "MIT",
@@ -37,17 +37,17 @@
     "eslint": "eslint . --ext ts",
     "prettier": "prettier \"**/*.{css,html,ts,js,java}\"",
     "swiftlint": "node-swiftlint",
-    "docgen": "docgen --api FirebaseMessagingPluginPlugin --output-readme README.md --output-json dist/docs.json",
+    "docgen": "docgen --api FirebaseMessagingPlugin --output-readme README.md --output-json dist/docs.json",
     "build": "npm run clean && tsc && rollup -c rollup.config.js",
     "clean": "rimraf ./dist",
     "watch": "tsc --watch",
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
-    "@capacitor/android": "next",
-    "@capacitor/core": "next",
-    "@capacitor/docgen": "^0.0.10",
-    "@capacitor/ios": "next",
+    "@capacitor/android": "^3.2.4",
+    "@capacitor/core": "^3.2.4",
+    "@capacitor/docgen": "^0.0.17",
+    "@capacitor/ios": "^3.2.4",
     "@ionic/eslint-config": "^0.3.0",
     "@ionic/prettier-config": "^1.0.1",
     "@ionic/swiftlint-config": "^1.1.2",
