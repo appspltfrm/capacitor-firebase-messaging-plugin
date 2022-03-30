@@ -29,6 +29,9 @@ public class FirebaseMessagingPlugin: CAPPlugin, MessagingDelegate {
                                                selector: #selector(self.didFailToRegisterForRemoteNotificationsWithError(notification:)),
                                                name: .capacitorDidFailToRegisterForRemoteNotifications,
                                                object: nil)
+        
+        UNUserNotificationCenter.current().requestAuthorization(options:[.badge, .alert, .sound]) {(granted, error) in
+        }
     }
     
     deinit {
