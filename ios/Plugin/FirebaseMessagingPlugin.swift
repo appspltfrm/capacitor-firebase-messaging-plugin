@@ -10,7 +10,7 @@ enum PushNotificationError: Error {
 }
 
 @objc(FirebaseMessagingPlugin)
-public class FirebaseMessagingPlugin: CAPPlugin, MessagingDelegate {
+public class FirebaseMessagingPlugin: CAPPlugin {
     
     private let notificationDelegateHandler = PushNotificationsHandler()
     private var appDelegateRegistrationCalled: Bool = false
@@ -19,6 +19,7 @@ public class FirebaseMessagingPlugin: CAPPlugin, MessagingDelegate {
     
         self.bridge?.notificationRouter.pushNotificationHandler = self.notificationDelegateHandler
         self.notificationDelegateHandler.plugin = self
+        
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.didRegisterForRemoteNotificationsWithDeviceToken(notification:)),
@@ -87,19 +88,19 @@ public class FirebaseMessagingPlugin: CAPPlugin, MessagingDelegate {
     
     @objc public func didRegisterForRemoteNotificationsWithDeviceToken(notification: NSNotification) {
         appDelegateRegistrationCalled = true
+        
         if let deviceToken = notification.object as? Data {
             let deviceTokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
-            notifyListeners("registration", data: [
-                "value": deviceTokenString
-            ])
+            print("CAPFirebaseMessagingPlugin: received token");
+            notifyListeners("registration", data: ["value": deviceTokenString])
+        
         } else if let stringToken = notification.object as? String {
-            notifyListeners("registration", data: [
-                "value": stringToken
-            ])
+            print("CAPFirebaseMessagingPlugin: received token");
+            notifyListeners("registration", data: ["value": stringToken])
+            
         } else {
-            notifyListeners("registrationError", data: [
-                "error": PushNotificationError.tokenParsingFailed.localizedDescription
-            ])
+            print("CAPFirebaseMessagingPlugin: token error");
+            notifyListeners("registrationError", data: ["error": PushNotificationError.tokenParsingFailed.localizedDescription])
         }
     }
 
@@ -111,10 +112,5 @@ public class FirebaseMessagingPlugin: CAPPlugin, MessagingDelegate {
         notifyListeners("registrationError", data: [
             "error": error.localizedDescription
         ])
-    }
-    
-    public func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-        print("CAPFirebaseMessagingPlugin: received token");
-        notifyListeners("tokenReceived", data:["value": fcmToken ?? "???"]);
     }
 }
