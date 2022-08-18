@@ -66,7 +66,11 @@ public class FirebaseMessagingPlugin: CAPPlugin, MessagingDelegate {
         Messaging.messaging().unsubscribe(fromTopic: topic);
         call.resolve();
     }
-    
+
+    @objc func getToken(_ call: CAPPluginCall) {
+        call.resolve(["token": Messaging.messaging().fcmToken as Any]);
+    }
+
     @objc func destroy(_ call: CAPPluginCall) {
         NotificationCenter.default.removeObserver(self)
     }

@@ -84,7 +84,7 @@ public class FirebaseMessagingPlugin extends Plugin {
             lastMessage = null;
         }
 
-        FirebaseMessaging.getInstance().setAutoInitEnabled(true);
+        // FirebaseMessaging.getInstance().setAutoInitEnabled(true);
 
         this.handleOnNewIntent(this.bridge.getActivity().getIntent());
     }
@@ -132,6 +132,22 @@ public class FirebaseMessagingPlugin extends Plugin {
         notifyListeners("messageReceived", eventMessage, true);
     }
 
+    @PluginMethod()
+    public void getToken(final PluginCall call) {
+
+        FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
+            @Override
+            public void onComplete(@NonNull Task<String> task) {
+                if (task.isSuccessful()) {
+                    JSObject result = new JSObject();
+                    result.put("token", task.getResult();
+                    call.resolve(result);
+                } else {
+                    call.reject();
+                }
+            }
+        });
+    }
 
     @PluginMethod()
     public void subscribeToTopic(final PluginCall call) {

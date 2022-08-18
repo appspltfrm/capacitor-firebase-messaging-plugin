@@ -25,6 +25,10 @@ export class FirebaseMessagingWebPlugin extends WebPlugin implements FirebaseMes
 		throw new Error("Method not implemented.");
 	}
 
+	getToken(): any {
+		throw new Error("Method not implemented.");
+	}
+
 	destroy(): Promise<void> {
 		throw new Error("Method not implemented.");
 	}
