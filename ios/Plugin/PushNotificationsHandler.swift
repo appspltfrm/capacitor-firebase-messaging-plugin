@@ -42,9 +42,9 @@ public class PushNotificationsHandler : NSObject, NotificationHandlerProtocol {
      * Called when a notification opens or activates the app based on an action.
      */
     public func didReceive(response: UNNotificationResponse) {
-        var data = JSObject()
+        
+        var data = makeNotificationRequestJSObject(response.notification.request)
 
-        let originalNotificationRequest = response.notification.request
         let actionId = response.actionIdentifier
 
         if actionId == UNNotificationDefaultActionIdentifier {
@@ -59,10 +59,7 @@ public class PushNotificationsHandler : NSObject, NotificationHandlerProtocol {
             data["inputValue"] = inputType.userText
         }
 
-        data["notification"] = makeNotificationRequestJSObject(originalNotificationRequest)
-
         self.plugin?.notifyListeners("messageReceived", data: data, retainUntilConsumed: true)
-
     }
 
     func makeNotificationRequestJSObject(_ request: UNNotificationRequest) -> JSObject {
