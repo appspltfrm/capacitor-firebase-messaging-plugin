@@ -140,10 +140,10 @@ public class FirebaseMessagingPlugin extends Plugin {
             public void onComplete(@NonNull Task<String> task) {
                 if (task.isSuccessful()) {
                     JSObject result = new JSObject();
-                    result.put("token", task.getResult();
+                    result.put("token", task.getResult());
                     call.resolve(result);
                 } else {
-                    call.reject();
+                    call.reject("Token not set");
                 }
             }
         });
