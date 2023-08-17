@@ -77,17 +77,17 @@ public class FirebaseMessagingPlugin: CAPPlugin {
 
             if #available(iOS 14.0, *) {
                 if (status == UNAuthorizationStatus.ephemeral) {
-                    call.resolve(["state": "granted"])
+                    call.resolve(["receive": "granted"])
                     return
                 }
             }
 
             if (status == UNAuthorizationStatus.authorized || status == UNAuthorizationStatus.provisional) {
-                call.resolve(["state": "granted"]);
+                call.resolve(["receive": "granted"]);
             } else if (status == UNAuthorizationStatus.denied) {
-                call.resolve(["state": "denied"]);
+                call.resolve(["receive": "denied"]);
             } else {
-                call.resolve(["state": "prompt"]);
+                call.resolve(["receive": "prompt"]);
             }
         })
     }
