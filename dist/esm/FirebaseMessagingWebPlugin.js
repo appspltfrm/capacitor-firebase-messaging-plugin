@@ -3,7 +3,10 @@ export class FirebaseMessagingWebPlugin extends WebPlugin {
     openNotificationsPermissionSettings() {
         throw new Error("Method not implemented.");
     }
-    notificationsPermissionState() {
+    checkPermissions() {
+        throw new Error("Method not implemented.");
+    }
+    requestPermissions() {
         throw new Error("Method not implemented.");
     }
     removeAllDeliveredNotifications() {
@@ -13,6 +16,9 @@ export class FirebaseMessagingWebPlugin extends WebPlugin {
         throw new Error("Method not implemented.");
     }
     unsubscribeFromTopic(_call) {
+        throw new Error("Method not implemented.");
+    }
+    getToken() {
         throw new Error("Method not implemented.");
     }
     destroy() {

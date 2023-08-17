@@ -1,7 +1,6 @@
-import {WebPlugin} from "@capacitor/core";
+import {PermissionState, WebPlugin} from "@capacitor/core";
 
 import type {FirebaseMessagingPlugin} from "./FirebaseMessagingPlugin";
-import type {NotificationsPermissionState} from "./NotificationsPermissionState";
 
 export class FirebaseMessagingWebPlugin extends WebPlugin implements FirebaseMessagingPlugin {
 
@@ -9,7 +8,11 @@ export class FirebaseMessagingWebPlugin extends WebPlugin implements FirebaseMes
 		throw new Error("Method not implemented.");
 	}
 
-	notificationsPermissionState(): Promise<{"state": NotificationsPermissionState}> {
+	checkPermissions(): Promise<{receive: PermissionState}> {
+		throw new Error("Method not implemented.");
+	}
+
+	requestPermissions(): Promise<{receive: PermissionState}> {
 		throw new Error("Method not implemented.");
 	}
 

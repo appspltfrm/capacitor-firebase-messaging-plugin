@@ -1,33 +1,15 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', { value: true });
-
 var core = require('@capacitor/core');
-
-/**
- * State of notification permission.
- */
-exports.NotificationsPermissionState = void 0;
-(function (NotificationsPermissionState) {
-    /**
-     * The app has permission to use system notifications.
-     */
-    NotificationsPermissionState["granted"] = "granted";
-    /**
-     * 	The app has been denied permission to use system notifications.
-     */
-    NotificationsPermissionState["denied"] = "denied";
-    /**
-     * The app needs to ask for permission in order use system notifications.
-     */
-    NotificationsPermissionState["prompt"] = "prompt";
-})(exports.NotificationsPermissionState || (exports.NotificationsPermissionState = {}));
 
 class FirebaseMessagingWebPlugin extends core.WebPlugin {
     openNotificationsPermissionSettings() {
         throw new Error("Method not implemented.");
     }
-    notificationsPermissionState() {
+    checkPermissions() {
+        throw new Error("Method not implemented.");
+    }
+    requestPermissions() {
         throw new Error("Method not implemented.");
     }
     removeAllDeliveredNotifications() {
@@ -37,6 +19,9 @@ class FirebaseMessagingWebPlugin extends core.WebPlugin {
         throw new Error("Method not implemented.");
     }
     unsubscribeFromTopic(_call) {
+        throw new Error("Method not implemented.");
+    }
+    getToken() {
         throw new Error("Method not implemented.");
     }
     destroy() {

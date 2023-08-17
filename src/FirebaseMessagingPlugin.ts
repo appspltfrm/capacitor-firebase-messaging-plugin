@@ -1,22 +1,37 @@
-import type {PluginListenerHandle} from "@capacitor/core";
-
-import type {NotificationsPermissionState} from "./NotificationsPermissionState";
+import type {PermissionState, PluginListenerHandle} from "@capacitor/core";
 import type {RemoteMessage} from "./RemoteMessage";
 
 export interface FirebaseMessagingPlugin {
+
+    /**
+     * Check permission to receive push notifications.
+     *
+     * On Android 12 and below the status is always granted because you can always
+     * receive push notifications. If you need to check if the user allows
+     * to display notifications, use local-notifications plugin.
+     */
+    checkPermissions(): Promise<{receive: PermissionState}>;
+
+    /**
+     * Request permission to receive push notifications.
+     *
+     * On Android 12 and below it doesn't prompt for permission because you can always
+     * receive push notifications.
+     *
+     * On iOS, the first time you use the function, it will prompt the user
+     * for push notification permission and return granted or denied based
+     * on the user selection. On following calls it will get the current status of
+     * the permission without prompting again.
+     *
+     * @since 1.0.0
+     */
+    requestPermissions(): Promise<{receive: PermissionState}>;
 
     /**
      * Open permission settings for current app. On iOS it will open settings related to system notifications,
      * on android it will open "about app" view, where the user will be able to grant system notifications.
      */
     openNotificationsPermissionSettings(): void;
-
-    /**
-     * Returns state of permission for system notifications (not only push, local as well).
-     *
-     * @return On Android only `NotificationsPermissionState.granted` and `NotificationsPermissionState.denied`.
-     */
-    notificationsPermissionState(): Promise<{"state": NotificationsPermissionState}>;
 
     /**
      * Remove all notifications.

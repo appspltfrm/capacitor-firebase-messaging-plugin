@@ -3,6 +3,7 @@ package appspltfrm.capacitor.firebase.messaging;
 import android.Manifest;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 
@@ -11,6 +12,7 @@ import androidx.core.app.NotificationManagerCompat;
 
 import com.getcapacitor.Bridge;
 import com.getcapacitor.JSObject;
+import com.getcapacitor.PermissionState;
 import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
 import com.getcapacitor.PluginHandle;
@@ -25,19 +27,11 @@ import com.google.firebase.messaging.RemoteMessage;
 
 @CapacitorPlugin(
     name = "FirebaseMessaging",
-    permissions = {
-        @Permission(
-            strings = {Manifest.permission.ACCESS_NETWORK_STATE},
-            alias = "network"
-        ),
-        @Permission(strings = {Manifest.permission.INTERNET}, alias = "internet"),
-        @Permission(
-            strings = {Manifest.permission.WAKE_LOCK},
-            alias = "wakelock"
-        ),
-    }
+    permissions = @Permission(strings = { Manifest.permission.POST_NOTIFICATIONS }, alias = FirebaseMessagingPlugin.PUSH_NOTIFICATIONS)
 )
 public class FirebaseMessagingPlugin extends Plugin {
+
+    static final String PUSH_NOTIFICATIONS = "receive";
 
     private static Bridge staticBridge = null;
     private static RemoteMessage lastMessage = null;
@@ -192,16 +186,29 @@ public class FirebaseMessagingPlugin extends Plugin {
 
     @PluginMethod()
     public void notificationsPermissionState(PluginCall call) {
+        this.checkPermissions(call);
+    }
 
-        JSObject result = new JSObject();
-
-        if (NotificationManagerCompat.from(this.getContext()).areNotificationsEnabled()) {
-            result.put("state", "granted");
+    @PluginMethod
+    public void checkPermissions(PluginCall call) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+            JSObject permissionsResultJSON = new JSObject();
+            permissionsResultJSON.put("receive", "granted");
+            call.resolve(permissionsResultJSON);
         } else {
-            result.put("state", "denied");
+            super.checkPermissions(call);
         }
+    }
 
-        call.resolve(result);
+    @PluginMethod
+    public void requestPermissions(PluginCall call) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU || getPermissionState(PUSH_NOTIFICATIONS) == PermissionState.GRANTED) {
+            JSObject permissionsResultJSON = new JSObject();
+            permissionsResultJSON.put("receive", "granted");
+            call.resolve(permissionsResultJSON);
+        } else {
+            requestPermissionForAlias(PUSH_NOTIFICATIONS, call, "permissionsCallback");
+        }
     }
 
     @PluginMethod()

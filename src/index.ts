@@ -2,7 +2,6 @@ import {registerPlugin} from "@capacitor/core";
 
 import type {FirebaseMessagingWebPlugin} from "./FirebaseMessagingWebPlugin";
 
-export * from "./NotificationsPermissionState";
 export * from "./FirebaseMessagingPlugin";
 export * from "./FirebaseMessagingWebPlugin";
 export * from "./RemoteMessage";

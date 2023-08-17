@@ -19,7 +19,7 @@ buildscript {
 apply plugin: 'com.android.library'
 
 android {
-    namespace "appspltfrm.capacitor.firebase.messaging"
+    namespace 'appspltfrm.capacitor.firebase.messaging'
     compileSdkVersion project.hasProperty('compileSdkVersion') ? rootProject.ext.compileSdkVersion : 33
     defaultConfig {
         minSdkVersion project.hasProperty('minSdkVersion') ? rootProject.ext.minSdkVersion : 22
@@ -45,7 +45,6 @@ android {
 
 repositories {
     google()
-    jcenter()
     mavenCentral()
 }
 
