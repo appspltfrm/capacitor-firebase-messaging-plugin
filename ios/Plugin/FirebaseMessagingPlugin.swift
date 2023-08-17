@@ -45,11 +45,44 @@ public class FirebaseMessagingPlugin: CAPPlugin {
         }
     }
     
-    @objc func notificationsPermissionState(_ call: CAPPluginCall) {
-        
+    /**
+     * Request notification permission
+     */
+    @objc override public func requestPermissions(_ call: CAPPluginCall) {
+
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+
+            guard error == nil else {
+                 if let err = error {
+                     call.reject(err.localizedDescription)
+                     return
+                 }
+
+                 call.reject("unknown error in permissions request")
+                 return
+             }
+
+            if (granted) {
+                call.resolve(["receive": "granted"])
+            } else {
+                call.resolve(["receive": "denied"])
+            }
+        }
+    }
+
+    @objc override public func checkPermissions(_ call: CAPPluginCall) {
+
         UNUserNotificationCenter.current().getNotificationSettings(completionHandler: {settings in
             let status = settings.authorizationStatus;
-            if (status == UNAuthorizationStatus.authorized) {
+
+            if #available(iOS 14.0, *) {
+                if (status == UNAuthorizationStatus.ephemeral) {
+                    call.resolve(["state": "granted"])
+                    return
+                }
+            }
+
+            if (status == UNAuthorizationStatus.authorized || status == UNAuthorizationStatus.provisional) {
                 call.resolve(["state": "granted"]);
             } else if (status == UNAuthorizationStatus.denied) {
                 call.resolve(["state": "denied"]);

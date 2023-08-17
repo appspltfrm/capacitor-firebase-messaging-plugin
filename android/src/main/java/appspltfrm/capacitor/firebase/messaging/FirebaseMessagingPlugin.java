@@ -19,6 +19,7 @@ import com.getcapacitor.PluginHandle;
 import com.getcapacitor.PluginMethod;
 import com.getcapacitor.annotation.CapacitorPlugin;
 import com.getcapacitor.annotation.Permission;
+import com.getcapacitor.annotation.PermissionCallback;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.installations.FirebaseInstallations;
@@ -153,6 +154,11 @@ public class FirebaseMessagingPlugin extends Plugin {
     public void unsubscribeFromTopic(final PluginCall call) {
         FirebaseMessaging.getInstance().unsubscribeFromTopic(call.getString("topic"));
         call.resolve();
+    }
+
+    @PermissionCallback
+    private void permissionsCallback(PluginCall call) {
+        this.checkPermissions(call);
     }
 
     @PluginMethod()
