@@ -16,7 +16,7 @@ export declare class FirebaseMessagingWebPlugin extends WebPlugin implements Fir
         topic: string;
     }): Promise<void>;
     getToken(): Promise<{
-        token: undefined;
+        token: null;
     }>;
     destroy(): Promise<void>;
 }

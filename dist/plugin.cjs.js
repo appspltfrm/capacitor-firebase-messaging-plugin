@@ -22,7 +22,7 @@ class FirebaseMessagingWebPlugin extends core.WebPlugin {
         throw new Error("Method not implemented.");
     }
     getToken() {
-        return Promise.resolve({ token: undefined });
+        return Promise.resolve({ token: null });
     }
     destroy() {
         throw new Error("Method not implemented.");
