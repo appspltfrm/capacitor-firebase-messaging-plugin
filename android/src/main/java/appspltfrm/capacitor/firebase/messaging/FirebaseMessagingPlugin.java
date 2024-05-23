@@ -133,13 +133,13 @@ public class FirebaseMessagingPlugin extends Plugin {
         FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
             @Override
             public void onComplete(@NonNull Task<String> task) {
+                JSObject result = new JSObject();
                 if (task.isSuccessful()) {
-                    JSObject result = new JSObject();
                     result.put("token", task.getResult());
-                    call.resolve(result);
                 } else {
-                    call.reject("Token not set");
+                    result.put("token", null);
                 }
+                call.resolve(result);
             }
         });
     }

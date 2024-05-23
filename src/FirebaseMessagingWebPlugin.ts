@@ -29,7 +29,7 @@ export class FirebaseMessagingWebPlugin extends WebPlugin implements FirebaseMes
 	}
 
 	getToken() {
-		return Promise.resolve({token: undefined});
+		return Promise.resolve({token: null});
 	}
 
 	destroy(): Promise<void> {
