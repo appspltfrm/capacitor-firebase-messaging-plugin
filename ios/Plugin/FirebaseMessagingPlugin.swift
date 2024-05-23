@@ -129,15 +129,15 @@ public class FirebaseMessagingPlugin: CAPPlugin {
         if let deviceToken = notification.object as? Data {
             let deviceTokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
             print("CAPFirebaseMessagingPlugin: received token");
-            notifyListeners("registration", data: ["value": deviceTokenString])
+            notifyListeners("tokenReceived", data: ["token": deviceTokenString])
         
         } else if let stringToken = notification.object as? String {
             print("CAPFirebaseMessagingPlugin: received token");
-            notifyListeners("registration", data: ["value": stringToken])
+            notifyListeners("tokenReceived", data: ["token": stringToken])
             
         } else {
             print("CAPFirebaseMessagingPlugin: token error");
-            notifyListeners("registrationError", data: ["error": PushNotificationError.tokenParsingFailed.localizedDescription])
+            notifyListeners("tokenError", data: ["error": PushNotificationError.tokenParsingFailed.localizedDescription])
         }
     }
 
