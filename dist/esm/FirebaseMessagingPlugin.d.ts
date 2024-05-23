@@ -63,7 +63,7 @@ export interface FirebaseMessagingPlugin {
      */
     destroy(): Promise<void>;
     getToken(): Promise<{
-        token: string;
+        token: string | undefined;
     }>;
     addListener(eventName: "messageReceived", listenerFunc: (event: RemoteMessage) => void): Promise<PluginListenerHandle>;
     addListener(eventName: "tokenReceived", listenerFunc: (event: {

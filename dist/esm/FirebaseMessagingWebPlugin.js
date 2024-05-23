@@ -19,7 +19,7 @@ export class FirebaseMessagingWebPlugin extends WebPlugin {
         throw new Error("Method not implemented.");
     }
     getToken() {
-        throw new Error("Method not implemented.");
+        return Promise.resolve({ token: undefined });
     }
     destroy() {
         throw new Error("Method not implemented.");

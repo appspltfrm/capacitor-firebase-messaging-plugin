@@ -21,7 +21,7 @@ var capacitorFirebaseMessagingPlugin = (function (exports, core) {
             throw new Error("Method not implemented.");
         }
         getToken() {
-            throw new Error("Method not implemented.");
+            return Promise.resolve({ token: undefined });
         }
         destroy() {
             throw new Error("Method not implemented.");

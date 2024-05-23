@@ -15,6 +15,8 @@ export declare class FirebaseMessagingWebPlugin extends WebPlugin implements Fir
     unsubscribeFromTopic(_call: {
         topic: string;
     }): Promise<void>;
-    getToken(): any;
+    getToken(): Promise<{
+        token: undefined;
+    }>;
     destroy(): Promise<void>;
 }
